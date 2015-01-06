@@ -1,0 +1,17 @@
+#
+# Automounter master map
+#
++auto_master            # Use directory service
+/net                    -hosts          -nobrowse,hidefromfinder,nosuid
+/home                   auto_home       -nobrowse,hidefromfinder
+/Network/Servers        -fstab
+/Users/Dan/Shares       auto_resources
+# /-                      auto_resources
+/-                      -static
+
+# NOTE: '/-' is a special mount point that tells autofs to
+# use the mount point(s) specified *inside* the mount map
+# file. [auto_resources in this case]
+
+# Otherwise we could mount all the shares into one
+# location e.g. `Users/Dan/Shares` as we did before.

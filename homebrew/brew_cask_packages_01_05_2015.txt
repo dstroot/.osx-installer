@@ -1,0 +1,16 @@
+atom
+cheatsheet
+dropbox
+filezilla
+flux
+font-droid-sans-mono
+font-source-code-pro
+iterm2
+logitech-unifying
+skype
+sonos
+spectacle
+spotify
+sublime-text
+vagrant
+virtualbox

@@ -1,0 +1,12 @@
+ack
+brew-cask
+git
+go
+libidn
+mackup
+rbenv
+ruby-build
+shellcheck
+tree
+wget
+zsh

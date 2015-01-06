@@ -1,0 +1,20 @@
+# Example:
+# Tell autofs to mount the share `tower/Music` to `/Users/Dan/Music`
+
+# /Users/Dan/Files -fstype=smbfs ://dan:aa853127@tower/Dan
+# /Users/Dan/Music -fstype=smbfs ://dan:aa853127@tower/Music
+# /Users/Dan/Shared -fstype=smbfs ://dan:aa853127@tower/Public
+# /Users/Dan/Movies -fstype=smbfs ://dan:aa853127@tower/Videos
+# /Users/Dan/Pictures -fstype=smbfs ://dan:aa853127@tower/Photos
+# /Users/Dan/Software -fstype=smbfs ://dan:aa853127@tower/Software
+# /Users/Dan/VirtualMachines -fstype=smbfs ://dan:aa853127@tower/VirtualMachines
+
+# Mount the share under the name below (for putting all in one `shares` location)
+
+Dan -fstype=smbfs ://dan:aa853127@tower/Dan
+Music -fstype=smbfs ://dan:aa853127@tower/Music
+Photos -fstype=smbfs ://dan:aa853127@tower/Photos
+Public -fstype=smbfs ://dan:aa853127@tower/Public
+Software -fstype=smbfs ://dan:aa853127@tower/Software
+Videos -fstype=smbfs ://dan:aa853127@tower/Videos
+VirtualMachines -fstype=smbfs ://dan:aa853127@tower/VirtualMachines

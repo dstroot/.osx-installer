@@ -1,0 +1,13 @@
+**/node_modules
+._*
+.DS_Store
+.apdisk
+thumbs.db
+desktop.ini
+.AppleDB
+.AppleDesktop
+.AppleDouble
+.TemporaryItems
+.Spotlight-V100
+.Trashes
+.fseventsd

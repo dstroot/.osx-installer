@@ -1,0 +1,15 @@
+ack
+brew-cask
+git
+go
+heroku-toolbelt
+libidn
+mackup
+node
+rbenv
+ruby-build
+shellcheck
+sqlite
+tree
+wget
+zsh
