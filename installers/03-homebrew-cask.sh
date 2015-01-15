@@ -158,8 +158,6 @@ brew install caskroom/cask/brew-cask
 brew cask update
 
 # Install cask apps
-echo ""
-cecho "Installing cask apps" $blue
 for i in "${casks[@]}"
 do
   echo ""

@@ -19,41 +19,6 @@
 # PURPOSE:        Installs 'all the things'
 # VERSION:  1.0   Initial version
 # ------------------------------------------------------------------------------
-ver="1.0"
-progname=$0
 
-# Define colors
-black='\033[0;30m'
-white='\033[0;37m'
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-magenta='\033[0;35m'
-cyan='\033[0;36m'
-
-#  Reset text attributes to normal
-alias Reset="tput sgr0"
-
-# Color-echo.
-#   Argument $1 = message
-#   Argument $2 = Color
-
-cecho() {
-  echo "${2}${1}"
-  Reset # Reset to normal.
-  return
-}
-
-echo ""
-cecho "===================================================" $white
-cecho " 11) Install Microsoft Office? (y/n)" $blue
-cecho "===================================================" $white
-read -r response
-case $response in
-  [yY])
-  open -a "textedit" "$HOME/Software/ISOs/Microsoft Office Family/Office Mac 2011/product key.txt"
-  hdiutil attach "$HOME/Software/ISOs/Microsoft Office Family/Office Mac 2011/Microsoft Office 2011.dmg"
-esac
-
-exit 0
+open -a "textedit" "$HOME/Software/ISOs/Microsoft Office Family/Office Mac 2011/product key.txt"
+hdiutil attach "$HOME/Software/ISOs/Microsoft Office Family/Office Mac 2011/Microsoft Office 2011.dmg"
