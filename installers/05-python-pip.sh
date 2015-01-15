@@ -41,37 +41,6 @@
 # 7) Simple to define fixed sets of requirements and reliably reproduce a
 #    set of packages.
 # ------------------------------------------------------------------------------
-ver="1.0"
-progname=$0
-
-# Define colors
-black='\033[0;30m'
-white='\033[0;37m'
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-magenta='\033[0;35m'
-cyan='\033[0;36m'
-
-#  Reset text attributes to normal
-alias Reset="tput sgr0"
-
-# Color-echo.
-#   Argument $1 = message
-#   Argument $2 = Color
-
-cecho() {
-  echo "${2}${1}"
-  Reset # Reset to normal.
-  return
-}
-
-# Ask for the administrator password upfront
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until script has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 echo ""
 cecho "===================================================" $white
@@ -118,7 +87,7 @@ if test $(which pip)
   then
     now=$(date +"%m_%d_%Y")
     cecho "Saving List of pip packages" $white
-    pip list > ~/.dotfiles/pip/installed_pips_$now.txt
+    pip list > ~/.osx-installer/whats-installed/installed_pips_$now.txt
 fi
 
 echo ""

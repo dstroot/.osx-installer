@@ -6,7 +6,9 @@ flux
 font-droid-sans-mono
 font-source-code-pro
 iterm2
+java
 logitech-unifying
+macdown
 skype
 sonos
 spectacle

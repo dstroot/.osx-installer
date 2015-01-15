@@ -158,7 +158,7 @@ echo ""
 
 now=$(date +"%m_%d_%Y")
 cecho "Saving List of installed gems" $white
-gem list > ~/.dotfiles/ruby/installed_gems_$now.txt 2>&1
+gem list > ~/.osx-installer/whats-installed/installed_gems_$now.txt 2>&1
 
 echo ""
 cecho "===================================================" $white

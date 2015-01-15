@@ -78,7 +78,7 @@ cecho "===================================================" $white
 # Any way to automate these?
 echo ''
 echo 'One of the first things you should do is sign into the App Store and'
-echo 'download and install your applications.nYou should have *already* '
+echo 'download and install your applications. You should have *already* '
 echo 'done this since you must have Xcode installed before you proceed.'
 echo ''
 cecho 'Should I open the App Store for you? (y/N)' $green

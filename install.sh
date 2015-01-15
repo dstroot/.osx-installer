@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 # ------------------------------------------------------------------------------
 # Copyright (c) 2014 Dan Stroot
 # All rights reserved.
@@ -15,9 +15,17 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 # ------------------------------------------------------------------------------
-# NAME:           after_dropbox_sync.sh
-# PURPOSE:        Restore from Mackup and link Desktop
+# NAME:           osx-installer.sh
+# PURPOSE:        Installs all the things
 # VERSION:  1.0   Initial version
+# ------------------------------------------------------------------------------
+# References & Resources:
+#  - https://github.com/MatthewMueller/dots
+#  - https://github.com/thoughtbot/laptop
+#  — https://mths.be/osx
+#  - https://github.com/kevinSuttle/osxdefaults/blob/master/REFERENCE.md
+#  - https://gist.github.com/brandonb927/3195465
+#  - https://github.com/joeyhoer/starter ** SAME APPROACH **
 # ------------------------------------------------------------------------------
 progname=$0
 ver="1.0"
@@ -40,55 +48,31 @@ alias Reset="tput sgr0"
 #   Argument $2 = Color
 
 cecho() {
-  echo "${2}${1}"
-  Reset # Reset to normal.
-  return
+	echo "${2}${1}"
+	Reset # Reset to normal.
+	return
 }
 
-# identify yourself
-cecho "Running: $progname, version $ver." $red
+# Here we go.. ask for the administrator password upfront and run a
+# keep-alive to update existing `sudo` time stamp until script has finished
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-echo ""
-cecho "===================================================" $white
-cecho " Move ~/Desktop to ~/Dropbox/Desktop? (y/n)" $blue
-cecho "===================================================" $white
-read -r response
-case $response in
-  [yY])
-  echo ""
+# where we keep our installers
+FILES=${HOME}/.osx-installer/installers/*
 
-  # if ~/Dropbox/Desktop doesn't exist create it
-  if [ ! -d ~/Dropbox/Desktop ]; then
-    cp -r ~/Desktop ~/Dropbox/Desktop
-  fi
-
-  # if ~/Desktop is not linked then link it
-  if [ ! -L ~/Desktop ]; then
-    # ln -s /path/to/original/folder /path/to/link
-    chmod -R -N ~/Desktop
-    rm -rf ~/Desktop
-    ln -s ~/Dropbox/Desktop ~/Desktop
-  fi
-
-esac
-
-echo ""
-cecho "===================================================" $white
-cecho " Run 'mackup restore'? (y/n)" $blue
-cecho "===================================================" $white
-read -r response
-case $response in
-  [yY])
-  echo ""
-
-  mackup restore
-
-esac
-
-echo ""
-cecho "===================================================" $white
-cecho " All Done!" $blue
-cecho "===================================================" $white
-echo ""
+for f in $FILES
+do
+	echo ""
+	cecho "===================================================" $white
+	cecho " Process $(basename $f) installer? (Y/n)" $blue
+	cecho "===================================================" $white
+	read -r response
+	case $response in
+		[yY])
+		echo ""
+		source $f
+	esac
+done
 
 exit 0

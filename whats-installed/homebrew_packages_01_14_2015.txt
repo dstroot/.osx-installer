@@ -9,7 +9,6 @@ node
 rbenv
 ruby-build
 shellcheck
-sqlite
 tree
 wget
 zsh

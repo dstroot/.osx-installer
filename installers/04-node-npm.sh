@@ -21,39 +21,54 @@
 # PURPOSE:        Install and maintain global npm modules
 # VERSION:  1.0   Initial version
 # ------------------------------------------------------------------------------
-ver="1.0"
-progname=$0
 
-# set -e
-# set -x   # debugging mode?
+# ------------------------------------------------------------------------------
+# NOTE: Maintain this array to manage your list of apps!
+#       To see what is currently installed: `npm -g ls --depth=0`
+# ------------------------------------------------------------------------------
 
-# Define colors
-black='\033[0;30m'
-white='\033[0;37m'
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-magenta='\033[0;35m'
-cyan='\033[0;36m'
+npm_modules=(
+  bower
+  grunt
+  grunt-cli
+  gulp
+  nodemon
+  mocha
+  jitsu
+  n                   # node version manager
+  npm-check           # check for updates
+  pure-prompt         # great ZSH prompt
+  markdown-live       # https://www.npmjs.com/package/markdown-live
+  yo                  # Yeoman
+  generator-angular-fullstack
+  generator-react-webpack
+  strongloop
+  strong-studio
+  react-tools
+  pleeease            # process CSS
+)
 
-#  Reset text attributes to normal
-alias Reset="tput sgr0"
+# ------------------------------------------------------------------------------
+#                 Other modules we *may* want install
+# ------------------------------------------------------------------------------
 
-# Color-echo.
-#   Argument $1 = message
-#   Argument $2 = Color
-cecho() {
-  echo "${2}${1}"
-  Reset # Reset to normal.
-  return
-}
+# istanbul
+# a11y                # Accessibility Audit
+# azure-cli
+# duo                 # https://github.com/duojs/duo
+# hicat               # cat with syntax highlighting
+# vtop                # graphical top https://www.npmjs.com/package/vtop
+# js-beautify         # https://www.npmjs.com/package/js-beautify
+# jscs
+# jspm
+# keybase-installer
+# less
+# npm-release         # Tiny tool for releasing npm modules.
+# peerflix            # Streaming torrent client for Node.js
+# resume-cli          # JSON Resume format
+# uglify-js           # https://www.npmjs.com/package/uglify-js
+# write-good          # Checks your prose https://www.npmjs.com/package/write-good
 
-# Ask for the administrator password upfront
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until script has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # echo ""
 # cecho "===================================================" $white
@@ -173,53 +188,6 @@ cecho " Installing global npm modules" $blue
 cecho "===================================================" $white
 echo ""
 
-# --------------------------------------------------------
-# NOTE: maintain this array to manage your list of modules!
-#       To see what is currently installed: `npm -g ls --depth=0`
-# --------------------------------------------------------
-npm_modules=(
-  bower
-  grunt
-  grunt-cli
-  gulp
-  nodemon
-  mocha
-  jitsu
-  n                   # node version manager
-  npm-check           # check for updates
-  pure-prompt         # great ZSH prompt
-  markdown-live       # https://www.npmjs.com/package/markdown-live
-#  yo                  # Yeoman
-#  generator-angular-fullstack
-#  generator-react-webpack
-#  strongloop
-#  strong-studio
-#  react-tools
-#  pleeease            # process CSS
-)
-
-
-# --------------------------------------------------------
-# Other modules we *may* want install
-# --------------------------------------------------------
-# istanbul
-# a11y                # Accessibility Audit
-# azure-cli
-# duo                 # https://github.com/duojs/duo
-# hicat               # cat with syntax highlighting
-# vtop                # graphical top https://www.npmjs.com/package/vtop
-# js-beautify         # https://www.npmjs.com/package/js-beautify
-# jscs
-# jspm
-# keybase-installer
-# less
-# npm-release         # Tiny tool for releasing npm modules.
-# peerflix            # Streaming torrent client for Node.js
-# resume-cli          # JSON Resume format
-# uglify-js           # https://www.npmjs.com/package/uglify-js
-# write-good          # Checks your prose https://www.npmjs.com/package/write-good
-
-
 for i in "${npm_modules[@]}"
 do
   if test ! $(which $i)
@@ -230,6 +198,11 @@ do
       cecho "$i is installed" $green
   fi
 done
+
+if [[ ! -h ~/.oh-my-zsh/custom/pure.zsh-theme ]]; then
+  # create link for pure prompt
+  ln -s ~/.npm-global/lib/node_modules/pure-prompt/pure.zsh ~/.oh-my-zsh/custom/pure.zsh-theme
+fi
 
 echo ""
 cecho "===================================================" $white
@@ -269,12 +242,10 @@ echo ""
 
 now=$(date +"%m_%d_%Y")
 cecho "Saving List of NPM Global Packages" $white
-npm -g ls --depth=0 > ~/.dotfiles/npm/npm_global_packages_$now.txt 2>&1
+npm -g ls --depth=0 > ~/.osx-installer/whats-installed/npm_global_packages_$now.txt
 
 echo ""
 cecho "===================================================" $white
 cecho " All Done!" $blue
 cecho "===================================================" $white
 echo ""
-
-exit 0
