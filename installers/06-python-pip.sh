@@ -42,9 +42,25 @@
 #    set of packages.
 # ------------------------------------------------------------------------------
 
+# ------------------------------------------------------------------------------
+# NOTE: Maintain this array to manage your list of apps!
+#       To see what is currently installed: `npm -g ls --depth=0`
+# ------------------------------------------------------------------------------
+pip_modules=(
+  # pygments
+  # speedtest-cli
+  # virtualenv
+  # virtualenvwrapper
+  # flake8
+)
+
+# ------------------------------------------------------------------------------
+#                 Other modules we *may* want install
+# ------------------------------------------------------------------------------
+
 echo ""
 cecho "===================================================" $white
-cecho " Install pip" $blue
+cecho " 1) Install pip" $blue
 cecho "===================================================" $white
 echo ""
 
@@ -58,17 +74,9 @@ fi
 
 echo ""
 cecho "===================================================" $white
-cecho " Install/update python packages" $blue
+cecho " 2) Install/update python packages" $blue
 cecho "===================================================" $white
 echo ""
-
-pip_modules=(
-  # pygments
-  # speedtest-cli
-  # virtualenv
-  # virtualenvwrapper
-  # flake8
-)
 
 for i in "${pip_modules[@]}"
 do
@@ -79,21 +87,23 @@ done
 
 echo ""
 cecho "===================================================" $white
-cecho " Save a list of pip packages" $blue
+cecho " 3) Save a list of pip packages" $blue
 cecho "===================================================" $white
 echo ""
 
 if test $(which pip)
   then
+  
     now=$(date +"%m_%d_%Y")
-    cecho "Saving List of pip packages" $white
-    pip list > ~/.osx-installer/whats-installed/installed_pips_$now.txt
+    filename="${now}_pip_packages.txt"
+    
+    cecho "Saving list of pip packages" $white
+    pip list > $HOME/.osx-installer/whats-installed/$filename
+    
 fi
 
 echo ""
 cecho "===================================================" $white
-cecho " All Done!" $blue
+cecho " 4) All Done!" $blue
 cecho "===================================================" $white
 echo ""
-
-exit 0

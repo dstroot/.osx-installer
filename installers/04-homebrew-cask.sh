@@ -25,7 +25,7 @@
 
 # ------------------------------------------------------------------------------
 # NOTE: Maintain this array to manage your list of apps!
-#       To see what is currently installed: `brew leaves`
+#       To see what is currently installed: `brew cask list`
 # ------------------------------------------------------------------------------
 
 # NOTE: You can install both Chrome and Lastpass with homebrew cask.
@@ -34,19 +34,20 @@
 casks=(
   # google-chrome           # See note
   # lastpass                # See note
-  logitech-unifying
-  iterm2
-  flux                    # Screen lighting
-  spectacle               # Window mgmt utility
-  skype
+  atom
+  cheatsheet
   dropbox
   filezilla
-  cheatsheet
-  sublime-text
-  atom
+  flux                      # easy on the eyes
+  iterm2
+  java                      # for S3_website
+  logitech-unifying
   macdown
+  skype
   sonos
+  spectacle                 # Window mgmt utility
   spotify
+  sublime-text
   vagrant
   virtualbox
 )
@@ -142,8 +143,6 @@ casks=(
 # keka
 
 
-
-
 echo ""
 cecho "===================================================" $white
 cecho " 🍺  1) Installing brew cask and apps" $blue
@@ -210,12 +209,13 @@ cecho "===================================================" $white
 echo ""
 
 now=$(date +"%m_%d_%Y")
+filename="${now}_cask_packages.txt"
 
 cecho "Saving List of homebrew *cask* installed packages" $white
-brew cask list > ~/.osx-installer/whats-installed/cask_packages_$now.txt
+brew cask list > $HOME/.osx-installer/whats-installed/$filename
 
 echo ""
 cecho "===================================================" $white
-cecho " 🍺  All Done!" $blue
+cecho " 🍺  4) All Done!" $blue
 cecho "===================================================" $white
 echo ""

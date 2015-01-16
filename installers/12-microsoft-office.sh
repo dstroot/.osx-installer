@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 # ------------------------------------------------------------------------------
 # Copyright (c) 2014 Dan Stroot
 # All rights reserved.
@@ -15,24 +15,10 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 # ------------------------------------------------------------------------------
-# NAME:           go.sh
-# PURPOSE:        Installs go
+# NAME:           install.sh
+# PURPOSE:        Installs 'all the things'
 # VERSION:  1.0   Initial version
 # ------------------------------------------------------------------------------
 
-# Note: Go should already be installed by homebrew by
-#       this point.
-
-# Create directories
-mkdir $HOME/Go
-mkdir -p $GOPATH/src/github.com/user
-
-# Setup your exports and paths:
-export GOPATH=$HOME/Go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-
-# `go get` the basics:
-go get code.google.com/p/go.tools/cmd/godoc
-go get code.google.com/p/go.tools/cmd/vet
+open -a "textedit" "$HOME/Software/ISOs/Microsoft Office Family/Office Mac 2011/product key.txt"
+hdiutil attach "$HOME/Software/ISOs/Microsoft Office Family/Office Mac 2011/Microsoft Office 2011.dmg"

@@ -29,16 +29,16 @@
 # ------------------------------------------------------------------------------
 apps=(
   ack               # Search utility
-  'wget --with-iri' # Get stuff!
   git               # Newer version than bundled OSX
-  zsh               # Newer version than bundled OSX
-  tree              # tree view of folder
+  go                # Go language
+  heroku-toolbelt   # Heroku utilities
   mackup            # Backup utility
   rbenv             # Ruby version manager
   ruby-build        # Build rubies!
   shellcheck        # Great utility to lint shell scripts!
-  go                # Go language
-  heroku-toolbelt   # Heroku utilities
+  tree              # tree view of folder
+  'wget --with-iri' # Get stuff!
+  zsh               # Newer version than bundled OSX
 )
 
 # ------------------------------------------------------------------------------
@@ -133,9 +133,10 @@ cecho "===================================================" $white
 echo ""
 
 now=$(date +"%m_%d_%Y")
+filename="${now}_homebrew_packages.txt"
 
 cecho "Saving List of homebrew installed packages" $white
-brew leaves > ~/.osx-installer/whats-installed/homebrew_packages_$now.txt
+brew leaves > $HOME/.osx-installer/whats-installed/$filename
 
 echo ""
 cecho "===================================================" $white

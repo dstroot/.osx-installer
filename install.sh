@@ -53,6 +53,37 @@ cecho() {
 	return
 }
 
+# identify yourself
+cecho "Running: $progname, version $ver." $red
+
+# Set continue to false by default
+CONTINUE=false
+
+echo ""
+cecho "###############################################" $red
+cecho "#        DO NOT RUN THIS SCRIPT BLINDLY       #" $red
+cecho "#         YOU'LL PROBABLY REGRET IT...        #" $red
+cecho "#                                             #" $red
+cecho "#    REVIEW THE SCRIPTS IN THE /INSTALLERS    #" $red
+cecho "#    FOLDER AND EDIT TO SUIT *YOUR* NEEDS!    #" $red
+cecho "###############################################" $red
+echo ""
+
+cecho "Have you reviewed the scripts you're about to" $red
+cecho "run and understand they will make changes to" $red
+cecho "your computer? (Y/n)" $red
+read -r response
+case $response in
+	[yY])
+	CONTINUE=true
+esac
+
+if ! $CONTINUE; then
+	# Check if we're continuing and output a message if not
+	cecho "Always better to verify first!" $green
+	exit
+fi
+
 # Here we go.. ask for the administrator password upfront and run a
 # keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v

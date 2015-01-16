@@ -25,31 +25,26 @@
 #   http://guides.rubygems.org/command-reference/#gem_update
 #   https://developer.apple.com/library/mac/#documentation/opensource/conceptual/shellscripting/AdvancedTechniques/AdvancedTechniques.html
 # ------------------------------------------------------------------------------
-ver="1.0"
-progname=$0
 
+# ------------------------------------------------------------------------------
+# NOTE: maintain this array to manage your list of gems!
+#       To see what is currently installed: `gem list`
+# ------------------------------------------------------------------------------
+gem_array=(
+  jekyll                  # For static blogging/Bootstrap
+  s3_website              # For pushing to Amazon S3
+  rdiscount               # Better faster markdown processing
+  json                    # For search
+  nokogiri                # For search
+  rouge                   # For Bootstrap/Jekyll
+  jekyll-sitemap          # Jekyll Sitemaps
+  bundler
+)
 
-# Define colors
-black='\033[0;30m'
-white='\033[0;37m'
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-magenta='\033[0;35m'
-cyan='\033[0;36m'
-
-#  Reset text attributes to normal
-alias Reset="tput sgr0"
-
-# Color-echo.
-#   Argument $1 = message
-#   Argument $2 = Color
-cecho() {
-  echo "${2}${1}"
-  Reset # Reset to normal.
-  return
-}
+# ------------------------------------------------------------------------------
+#                 Other modules we *may* want install
+# ------------------------------------------------------------------------------
+# cocoapods               # For building stuff
 
 echo ""
 cecho "===================================================" $white
@@ -97,26 +92,6 @@ cecho "===================================================" $white
 cecho " 3) Installing/updating Gems" $blue
 cecho "===================================================" $white
 
-# --------------------------------------------------------
-# NOTE: maintain this array to manage your list of gems!
-#       To see what is currently installed: `gem list`
-# --------------------------------------------------------
-gem_array=(
-  jekyll                  # For static blogging/Bootstrap
-  s3_website              # For pushing to Amazon S3
-  rdiscount               # Better faster markdown processing
-  json                    # For search
-  nokogiri                # For search
-  rouge                   # For Bootstrap/Jekyll
-  jekyll-sitemap          # Jekyll Sitemaps
-)
-
-# Stuff we may want to install
-gem_parking_lot=(
-  bundler                 # For bundles!  ;)
-  cocoapods               # For building stuff
-)
-
 for i in "${gem_array[@]}"
 do
   # If it's not installed then install it!
@@ -157,13 +132,13 @@ cecho "===================================================" $white
 echo ""
 
 now=$(date +"%m_%d_%Y")
-cecho "Saving List of installed gems" $white
-gem list > ~/.osx-installer/whats-installed/installed_gems_$now.txt 2>&1
+filename="${now}_ruby_gems.txt"
+
+cecho "Saving list of installed gems" $white
+gem list > $HOME/.osx-installer/whats-installed/$filename
 
 echo ""
 cecho "===================================================" $white
-cecho " 4) All Done!" $blue
+cecho " 6) All Done!" $blue
 cecho "===================================================" $white
 echo ""
-
-exit 0

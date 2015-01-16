@@ -199,8 +199,8 @@ do
   fi
 done
 
+# create link for pure prompt
 if [[ ! -h ~/.oh-my-zsh/custom/pure.zsh-theme ]]; then
-  # create link for pure prompt
   ln -s ~/.npm-global/lib/node_modules/pure-prompt/pure.zsh ~/.oh-my-zsh/custom/pure.zsh-theme
 fi
 
@@ -241,8 +241,10 @@ cecho "===================================================" $white
 echo ""
 
 now=$(date +"%m_%d_%Y")
-cecho "Saving List of NPM Global Packages" $white
-npm -g ls --depth=0 > ~/.osx-installer/whats-installed/npm_global_packages_$now.txt
+filename="${now}_npm_global_packages.txt"
+
+cecho "Saving List of npm global packages" $white
+npm -g ls --depth=0 > $HOME/.osx-installer/whats-installed/$filename
 
 echo ""
 cecho "===================================================" $white
