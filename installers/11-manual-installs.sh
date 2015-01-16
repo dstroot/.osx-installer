@@ -20,7 +20,6 @@
 # VERSION:  1.0   Initial version
 # ------------------------------------------------------------------------------
 
-echo ""
 cecho " Some apps are not found in the App Store and" $white
 cecho " are not available in Homebrew either. I can open" $white
 cecho " their websites for you to install them. Should I" $white

@@ -69,9 +69,9 @@ cecho "#    FOLDER AND EDIT TO SUIT *YOUR* NEEDS!    #" $red
 cecho "###############################################" $red
 echo ""
 
-cecho "Have you reviewed the scripts you're about to" $red
-cecho "run and understand they will make changes to" $red
-cecho "your computer? (Y/n)" $red
+cecho "Have you reviewed the scripts you're about to" $green
+cecho "run and understand they will make changes to" $green
+cecho "your computer? (Y/n)" $green
 read -r response
 case $response in
 	[yY])
