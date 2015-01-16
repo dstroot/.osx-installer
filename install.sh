@@ -54,7 +54,7 @@ cecho() {
 }
 
 # identify yourself
-cecho "Running: $progname, version $ver." $red
+cecho "Running: $progname, version $ver." $blue
 
 # Set continue to false by default
 CONTINUE=false
